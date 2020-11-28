@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -16,7 +15,6 @@ def register(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            messages.success(request, f'Your account has been created {username}!')
             return redirect('blog-home')
     else:
         form = UserRegisterForm()
@@ -33,7 +31,6 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated.')
             return redirect('profile')
 
     else:
