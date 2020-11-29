@@ -17,5 +17,6 @@
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content">{{ object.content }}</p>
         </div>
+        <a href="{% url 'post-detail' post.id %}">Like</a>
     </article>
 {% endblock %}

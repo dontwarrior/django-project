@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (ListView,
                                   DetailView,
                                   CreateView,
@@ -8,14 +8,7 @@ from django.views.generic import (ListView,
                                   DeleteView,
                                   )
 
-from .models import Post
-
-
-def home(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'blog/home.html', context)
+from .models import Post, Like
 
 
 class PostListView(ListView):
@@ -80,3 +73,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, "blog/about.html")
+
+
+def like_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    like = Like(test=str(pk))
+    like.post = post
+    like.save()
+    return redirect('post-like')
