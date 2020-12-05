@@ -18,12 +18,15 @@
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content">{{ object.content }}</p>
         </div>
-        <div>
-            <a href="{% url 'post-like' post.id %}"><i class="fa fa-heart-o" aria-hidden="true">Like</i></a>
-        </div>
+
         <div>
             Likes: {{ post.likes_count }}
         </div>
 
     </article>
+    <div class="btn-block">
+        <a href="{% url 'post-like' post.id %}">
+            <i class="far fa-heart"></i>
+        </a>
+    </div>
 {% endblock %}

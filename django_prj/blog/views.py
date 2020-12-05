@@ -82,4 +82,4 @@ def like_post(request, pk):
     post.likes_count += 1
     post.save()
     like.save()
-    return redirect('blog-home')
+    return redirect('post-detail', pk)
