@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
@@ -17,6 +18,12 @@
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content">{{ object.content }}</p>
         </div>
-        <a href="{% url 'post-detail' post.id %}">Like</a>
+        <div>
+            <a href="{% url 'post-like' post.id %}"><i class="fa fa-heart-o" aria-hidden="true">Like</i></a>
+        </div>
+        <div>
+            Likes: {{ post.likes_count }}
+        </div>
+
     </article>
 {% endblock %}

@@ -69,6 +69,24 @@ TEMPLATES = [
         },
     },
 ]
+#
+# LOGGING = {
+#     'disable_existing_loggers': False,
+#     'version': 1,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'level': 'DEBUG'
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#     },
+# }
 
 WSGI_APPLICATION = 'django_prj.wsgi.application'
 
@@ -128,7 +146,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

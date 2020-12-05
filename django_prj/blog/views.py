@@ -79,5 +79,7 @@ def like_post(request, pk):
     post = Post.objects.get(pk=pk)
     like = Like(test=str(pk))
     like.post = post
+    post.likes_count += 1
+    post.save()
     like.save()
-    return redirect('post-like')
+    return redirect('blog-home')
