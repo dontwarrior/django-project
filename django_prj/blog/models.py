@@ -17,3 +17,4 @@ class Post(models.Model):
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     test = models.CharField(max_length=2, default='cd')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
