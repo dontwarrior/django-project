@@ -17,19 +17,18 @@ class PostListView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 3
 
 
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user-post.html'
     context_object_name = 'posts'
-    ordering_by = ['-likes_count']
-    paginate_by = 5
+    paginate_by = 3
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
+        return Post.objects.filter(author=user).order_by('-likes_count')
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -83,25 +82,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-def about(request):
-    return render(request, "blog/about.html")
-
-
-# def like_post(request, pk):
-#     like = Like.objects.filter(user=request.user.id, post_id=pk).first()
-#     post = Post.objects.get(pk=pk)
-#     if like:
-#         post.like.delete()
-#         post.likes_count -= 1
-#     else:
-#         like = Like(test=str(pk), user=request.user)
-#         like.post = post
-#
-#         post.save()
-#         like.save()
-#     return redirect('post-detail', pk)
-
-
 class LikePostView(views.View):
     def get(self, request, **kwargs):
         current_user = request.user
@@ -123,3 +103,10 @@ class LikePostView(views.View):
             post.save()
 
         return redirect('post-detail', post.id)
+
+
+
+def about(request):
+    return render(request, "blog/about.html")
+
+
