@@ -1,2 +1,2 @@
-# softuni-django-exam-project
-Django project for SoftUni exam
+django-project
+Django project dreams blog. User authentication and profile management.
